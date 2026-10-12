@@ -268,12 +268,6 @@ def video_process(data, filename, minimum, maximum, quality_mode="balanced"):
 @app.route("/")
 def index():
     return render_template("index.html")
-@app.get("/sw.js")
-def service_worker():
-    return send_file(
-        BASE / "sw.js",
-        mimetype="application/javascript"
-    )
 
 @app.post("/compress")
 def compress():
