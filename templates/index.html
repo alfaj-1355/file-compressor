@@ -35,15 +35,5 @@ form.onsubmit=async e=>{e.preventDefault();if(!chosen.length)return toast("Choos
 // Size increaser is handled by the server using the original extension. For all modes
 // the server applies the selected min/max range.
 let r=await fetch("/compress",{method:"POST",body:fd});let d=await r.json();if(!r.ok)throw Error(d.error||"Processing failed");list.innerHTML=d.outputs.map(x=>`<div class="file"><div class="ico">✅</div><main><div class="name">${x.name}</div><div class="size">${bytes(x.original)} → <b>${bytes(x.size)}</b></div></main><a href="${x.url}">Download</a></div>`).join("");toast("Done! Files are in your requested range where possible.")}catch(err){toast(err.message)}finally{btn.disabled=false;btn.textContent=mode==="increase"?"Increase size →":"Process files →"}}
-/* AD SERVICE WORKER REGISTRATION */
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js")
-        .then(() => {
-            console.log("Service worker registered");
-        })
-        .catch(err => {
-            console.error("Service worker error:", err);
-        });
-}
 
 </script></body></html>
